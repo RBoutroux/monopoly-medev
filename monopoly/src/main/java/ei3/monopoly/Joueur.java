@@ -140,11 +140,11 @@ public class Joueur {
     public void construire(Constructible c){
        
         // on vérifie si on a assez d'argent 
-        if (c.getPrixConstruction() > this.fortune){
+        if (c.getprixConstruction() > this.fortune){
             System.out.println ("Vous n'avez pas assez d'argent pour construire"); 
         } else {
             // on paie la construction
-            this.fortune = this.fortune - c.getPrixConstruction(); 
+            this.fortune = this.fortune - c.getprixConstruction(); 
             // on vérifie le nombre de maisons sur la case, moins de 4, on rajoute une maison 
             if (c.getnbMaison()<=4){
                 c.setnbMaison(c.getnbMaison()+1) ; 
