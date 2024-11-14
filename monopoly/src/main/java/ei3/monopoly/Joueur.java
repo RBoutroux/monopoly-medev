@@ -12,5 +12,23 @@ public class Joueur {
     private String nom; 
     private int fortune; 
     // private Case pos; 
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int getFortune() {
+        return fortune;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setFortune(int fortune) {
+        this.fortune = fortune;
+    }
+    
+    
     
 }
