@@ -9,5 +9,8 @@ package ei3.monopoly;
  * @author grigm
  */
 public class Joueur {
+    private String nom; 
+    private int fortune; 
+    // private Case pos; 
     
 }
