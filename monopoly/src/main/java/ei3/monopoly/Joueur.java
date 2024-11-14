@@ -31,30 +31,54 @@ public class Joueur {
         this.fortune = fortune;
     }
     
-      /**
+    /**
     * Afficher les infos du joueur
     * @author grigm
     */
-    public String toString(){
-        return ""; 
+    @Override
+    public void toString(){
+        System.out.println("Nom du joueur : " + this.nom + "\nFortune : " + this.fortune); 
     }
+
+    
     
     /**
     * 
     * @author grigm
+     * @return count le nombre de compagnies que possèdent le joueur 
     */
-    public String nbGares(){
-        return ""; 
+    public int nbGares(){
+        int count = 0; 
+        for (int i = 0; i<40; i++){
+            /*if (this.plateau.getplateau().get(i) instanceof Achetable){
+              if (this.plateau.getplateau().get(i).getProprietaire().getNom()== this.getNom()) {
+                    count ++; 
+                }  
+            }
+          */  
+        }
+        return count; 
     }
+    
     
     /**
-    * 
-    * @author grigm
-    */
-    public String nbCompanies(){
-        return ""; 
+     *
+     * @author grigm
+     * @return count le nombre de compagnies que possèdent le joueur 
+     */    
+    public int nbCompanies(){
+        int count = 0; 
+        for (int i = 0; i<40; i++){
+            /*if (this.plateau.getplateau().get(i) instanceof Companies){
+              if (this.plateau.getplateau().get(i).getProprietaire().getNom()== this.getNom()) {
+                    count ++; 
+                }  
+            }
+        */    
+        }
+        return count; 
     }
-    
+
     /**
     * 
     * @author grigm
