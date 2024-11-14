@@ -12,6 +12,7 @@ public class Joueur {
     private String nom; 
     private int fortune; 
     // private Case pos; 
+    // private Plateau plateau; 
 
     public String getNom() {
         return nom;
@@ -29,10 +30,8 @@ public class Joueur {
         this.fortune = fortune;
     }
     
-    
-    // private Case pos;
-    
-    
+ 
+  
     // Méthode de paiement d'une somme à un autre joueur
     public void payer(Joueur autreJoueur, int montant) throws NoMoreMoney {
         if (this.fortune < montant) {
