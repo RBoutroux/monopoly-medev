@@ -1,9 +1,9 @@
 package ei3.monopoly;
 
 public class Achetable extends Case{
-    private float prix;
+    private int prix;
     private Joueur proprietaire; 
-    public Achetable(String nom,float prix){
+    public Achetable(String nom,int prix){
         super(nom);
         this.prix=prix;
         this.proprietaire=null; //Initilialize asset with no owners
@@ -14,10 +14,10 @@ public class Achetable extends Case{
     public void acheter(Joueur j) {
         this.proprietaire = j;
     }
-    public float getPrix(){
+    public int getPrix(){
         return this.prix;
     }
-    public float calculerLoyer(){
+    public int calculerLoyer(){
         if (this.getProp()==null){
             return 0;
         }

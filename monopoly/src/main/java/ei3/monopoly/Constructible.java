@@ -3,7 +3,7 @@ package ei3.monopoly;
 public class Constructible extends Achetable {
     private int nbHotel;
     private int nbMaison;
-    public Constructible(String nom,float prix,int h, int m){
+    public Constructible(String nom,int prix,int h, int m){
         super(nom,prix);
         this.nbHotel=h;
         this.nbMaison=m;
@@ -12,7 +12,7 @@ public class Constructible extends Achetable {
         this.nbHotel=h;
         this.nbMaison=m;
     }
-    public float calculerLoyer(){
+    public int calculerLoyer(){
         if (this.getProp()==null){
             return 0;
         }
