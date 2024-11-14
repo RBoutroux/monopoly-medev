@@ -106,6 +106,7 @@ public class Joueur {
         // Lancer du dé pour avoir un nombre aléatoire entre 1 et 6
         int de= lanceLeDe();
         
+        
     }
         
     
