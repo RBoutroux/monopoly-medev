@@ -13,7 +13,31 @@ public class Joueur {
     private String nom; 
     private int fortune; 
     private Case pos; 
-    // private Plateau plateau; 
+    private Plateau plateau;
+    
+    /**
+     * constructeur joueur
+     * @param nom : nom du joueur
+     * @param plateau
+     * @param pos : position du joueur
+     * @author nekouki
+     */
+    public Joueur(String nom, Plateau plateau, Case pos) {
+        this.nom = nom;
+        this.plateau = plateau;
+        this.pos = pos;
+        this.fortune = 100000; // Fortune initiale de 100000 €
+    }
+    /**
+     * constructeur par defaut
+     * @author nekouki
+     */
+    
+    public Joueur() {
+        this.nom='Bob';
+        this.pos=0;
+        this.fortune = 100000; // Fortune initialisée par défaut à 100000 €
+    }
 
     public String getNom() {
         return nom;
@@ -103,16 +127,6 @@ public class Joueur {
          this.fortune = this.fortune + a.getPrix(); 
           
     }
-    
-    
-    /**
-    * 
-    * @author grigm
-    */
-    public void avancer(){
-         
-    }
- 
   
     // Méthode de paiement d'une somme à un autre joueur
     public void payer(Joueur autreJoueur, int montant) throws NoMoreMoney {
@@ -130,17 +144,53 @@ public class Joueur {
         }
     }
      
-    
+    /**
+     * lancer de dé
+     * @return entier entre 1 et 6
+     */
     public static int lanceLeDe() {
         return ((int) Math.floor(Math.random()*6))+1;
     }
     
+    /**
+     * @param d: entier issu du dé
+     * @author: nekouki
+     */
+    
+    public void avancer(int d) {
+        // calcul de la nouvelle position
+        this.pos = (this.pos + d) % 40;
+        
+    }
+    /**
+     * Tour de Jeu
+     * @author nekouki
+     */
+    
     public void tourDeJeu() {
         // Lancer du dé pour avoir un nombre aléatoire entre 1 et 6
         int de= lanceLeDe();
-        
-        
-    }
+        // Avancer le joueur sur le plateau
+        avancer(de);
+        // 
+        if (pos instanceof Achetable) {
+            Achetable caseAchetable = (Achetable) pos;
+            if (de % 2 == 1 && caseAchetable.getProprietaire() == null && fortune >= caseAchetable.getPrix()) {
+                try {
+                    acheter(caseAchetable);
+                } catch (NoMoreMoney e) {
+                    System.out.println(e.getMessage());
+                }
+            } else if (caseAchetable.getProprietaire() != null && caseAchetable.getProprietaire() != this) {
+                try {
+                    payer(caseAchetable.getProprietaire(), caseAchetable.calculerLoyer());
+                } catch (NoMoreMoney e) {
+                    System.out.println(nom + " ne peut pas payer le loyer et est éliminé.");
+                    plateau.elimination(this);
+                }
+            }
         
     
+        }
+    }   
 }
