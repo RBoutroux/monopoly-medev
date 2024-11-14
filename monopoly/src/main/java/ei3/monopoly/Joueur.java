@@ -163,7 +163,9 @@ public class Joueur {
     
     public void avancer(int d) {
         // calcul de la nouvelle position
-        this.pos = (this.pos + d) % 40;
+        int nouvellePosition = (pos.getPosition() + d) % 40;
+        // Mettre à jour la position de la case
+        pos.setPosition(nouvellePosition);
         
     }
     /**
