@@ -11,7 +11,14 @@ package ei3.monopoly;
 public class Monopoly {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Plateau plat = new Plateau();
+        plat.initPlateau();
+        Case case0 = plat.getPlateau().get(0);
+        for(int i=1; i<=4 ; i++){
+            Joueur j= new Joueur("joueur "+i, plat, case0 );
+            plat.ajouterJoueur(j);
+        }
+        plat.tourDuJeu();
     }
 }
 
