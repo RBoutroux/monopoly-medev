@@ -34,8 +34,8 @@ public class Joueur {
      */
     
     public Joueur() {
-        this.nom='Bob';
-        this.pos=0;
+        this.nom="Bob";
+        this.pos=null;
         this.fortune = 100000; // Fortune initialisée par défaut à 100000 €
     }
 
@@ -55,11 +55,15 @@ public class Joueur {
         this.fortune = fortune;
     }
     
+    public Plateau getPlateau() {
+        return this.plateau;
+    }
+    
     /**
     * Afficher les infos du joueur
     * @author grigm
     */
-    @Override
+
     public void toString(){
         System.out.println("Nom du joueur : " + this.nom + "\nFortune : " + this.fortune); 
     }
