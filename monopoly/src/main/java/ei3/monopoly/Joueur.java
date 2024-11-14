@@ -131,6 +131,31 @@ public class Joueur {
          this.fortune = this.fortune + a.getPrix(); 
           
     }
+    
+      /**
+    * Méthode pour construire une maison ou un immeuble
+    * @author grigm
+     * @param c case où construire une maison
+    */
+    public void construire(Constructible c){
+       
+        // on vérifie si on a assez d'argent 
+        if (c.getPrixConstruction() > this.fortune){
+            System.out.println ("Vous n'avez pas assez d'argent pour construire"); 
+        } else {
+            // on paie la construction
+            this.fortune = this.fortune - c.getPrixConstruction(); 
+            // on vérifie le nombre de maisons sur la case, moins de 4, on rajoute une maison 
+            if (c.getnbMaison()<=4){
+                c.setnbMaison(c.getnbMaison()+1) ; 
+            } // 4 maisons on met un immeuble et on enlève les maisons
+            else {
+                 c.setnbMaison(0) ; 
+                 c.setnbHotel(c.getnbHotel()+1);  
+            }     
+        }   
+    }
+
   
     // Méthode de paiement d'une somme à un autre joueur
     public void payer(Joueur autreJoueur, int montant) throws NoMoreMoney {
