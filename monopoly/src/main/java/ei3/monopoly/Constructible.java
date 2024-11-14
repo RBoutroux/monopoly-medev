@@ -3,10 +3,12 @@ package ei3.monopoly;
 public class Constructible extends Achetable {
     private int nbHotel;
     private int nbMaison;
-    public Constructible(String nom,int prix,int h, int m){
+    private int loyer;
+    public Constructible(String nom,int prix,int h, int m, int loyer){
         super(nom,prix);
         this.nbHotel=h;
         this.nbMaison=m;
+        this.loyer=loyer;
     }
     public void construire(int h, int m){
         this.nbHotel=h;
@@ -17,7 +19,7 @@ public class Constructible extends Achetable {
             return 0;
         }
         else{
-            return this.nbHotel*100+this.nbMaison*10;  //a=100 b=10
+            return this.loyer+this.nbHotel*100+this.nbMaison*10;  //a=100 b=10
         }
     }
     @Override

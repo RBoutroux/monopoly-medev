@@ -1,6 +1,6 @@
 package ei3.monopoly;
 
-public class Achetable extends Case{
+public abstract class Achetable extends Case{
     private int prix;
     private Joueur proprietaire; 
     public Achetable(String nom,int prix){
@@ -17,14 +17,7 @@ public class Achetable extends Case{
     public int getPrix(){
         return this.prix;
     }
-    public int calculerLoyer(){
-        if (this.getProp()==null){
-            return 0;
-        }
-        else{
-            return 2500*Integer.parseInt(this.proprietaire.nbGares());
-        }
-    }
+    public abstract int calculerLoyer();
     @Override
     public String toString() {
         if (this.proprietaire == null) {
