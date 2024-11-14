@@ -7,6 +7,7 @@ package ei3.monopoly;
 /**
  *
  * @author grigm
+ * @author nekouki
  */
 public class Joueur {
     private String nom; 
@@ -30,8 +31,6 @@ public class Joueur {
     }
     
     
-    // private Case pos;
-    
     
     // Méthode de paiement d'une somme à un autre joueur
     public void payer(Joueur autreJoueur, int montant) throws NoMoreMoney {
@@ -48,5 +47,20 @@ public class Joueur {
             super(message);
         }
     }
+     
+    
+    public static int lanceLeDe() {
+        return ((int) Math.floor(Math.random()*6))+1;
+    }
+    
+    public void tourDeJeu() {
+        // Lancer du dé pour avoir un nombre aléatoire entre 1 et 6
+        int de= lanceLeDe();
+        
+    }
+        
+        
+    
+
     
 }
