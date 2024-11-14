@@ -1,4 +1,4 @@
-/*
+*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -14,6 +14,7 @@ import java.util.Random;
  * @author Kaoutar et Larissa 
  */
 public class Plateau {
+    
     ArrayList<Case> plateau; //stocker 40 cases
     LinkedList<Joueur> joueurs; //stocker les joeurs
     
@@ -48,15 +49,15 @@ public class Plateau {
             
             switch (nbAlea){
                 case 0:
-                    e = new Gare("", 0);
+                    e = new Gare("Gare", 0);
                     plateau.add(e);    
                     break;
                 case 1:
-                    e = new Companie("",0);
+                    e = new Companie("Companie",0);
                     plateau.add(e);    
                     break;
                 case 2:
-                    e = new Constructible("",0, 0, 0);
+                    e = new Constructible("Constructible",0, 0, 0);
                     plateau.add(e);    
                     break;
                 case 3: //cree des cases non achetables
@@ -143,7 +144,11 @@ public class Plateau {
      * @param j: le joueur en compte
      */
     public void elimination(Joueur j){
-        if(j.getFortune()<=0) joueurs.remove(j);
+        if(j.getFortune()<=0){
+             joueurs.remove(j);
+             System.out.println(":(.....joueur éliminé");
+             j.toString(); 
+        }
     }
     
     /**
@@ -170,5 +175,29 @@ public class Plateau {
             }
         }
     
+    }
+    public void affiche(){
+        System.out.println("Plateau :");
+        for(int i=0;i<plateau.size();i++){
+            plateau.get(i).toString();
+        }
+        
+        System.out.println("=====================================");
+        System.out.println("Liste des joueurs :");
+        
+        for(int i=0;i<joueurs.size();i++){
+            System.out.println("---------");
+            System.out.println("Joueur "+(i+1));
+            Joueur j=joueurs.get(i);
+            j.toString();
+            System.out.println("liste des cases que le joueur possède : ");
+            for (Case c:plateau){
+                if (c instanceof Achetable){
+                    if (((Achetable) c).getProp()==j) {
+                        System.out.println(((Achetable) c).nom);
+                    }  
+                }
+            }
+        }
     }
 }
