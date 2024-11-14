@@ -12,7 +12,7 @@ package ei3.monopoly;
 public class Joueur {
     private String nom; 
     private int fortune; 
-    // private Case pos; 
+    private Case pos; 
     // private Plateau plateau; 
 
     public String getNom() {
@@ -51,7 +51,7 @@ public class Joueur {
         int count = 0; 
         for (int i = 0; i<40; i++){
             /*if (this.plateau.getplateau().get(i) instanceof Achetable){
-              if (this.plateau.getplateau().get(i).getProprietaire().getNom()== this.getNom()) {
+              if (this.plateau.getplateau().get(i).getProp().getNom()== this.getNom()) {
                     count ++; 
                 }  
             }
@@ -70,7 +70,7 @@ public class Joueur {
         int count = 0; 
         for (int i = 0; i<40; i++){
             /*if (this.plateau.getplateau().get(i) instanceof Companies){
-              if (this.plateau.getplateau().get(i).getProprietaire().getNom()== this.getNom()) {
+              if (this.plateau.getplateau().get(i).getgetProp().getNom()== this.getNom()) {
                     count ++; 
                 }  
             }
@@ -80,21 +80,30 @@ public class Joueur {
     }
 
     /**
-    * 
+    * Modifier le propriétaire de la case a et payer le prix de la case
     * @author grigm
-    
+     * @param a élément achetable à acheter 
+    */
     public void acheter(Achetable a){
+         a.acheter(this);
+         
+         //on paie le prix de l'achat 
+         this.fortune = this.fortune - a.getPrix(); 
          
     }
-    * */
+    
     
     /**
-    * 
+    * Récupérer le prix de la case qu'on hypothèque
     * @author grigm
-    public void hypotequer(Achetable a){
-         
-    }
+     * @param a case à hypotequer
     */
+    public void hypotequer(Achetable a){
+        //on récupère le montant de la case 
+         this.fortune = this.fortune + a.getPrix(); 
+          
+    }
+    
     
     /**
     * 
