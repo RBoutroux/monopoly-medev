@@ -118,6 +118,39 @@ public class Plateau {
             return null;
         }
     }
+    /**
+     * éliminer le joueur si sa fortune <=0
+     * @param j: le joueur en compte
+     */
+    public void elimination(Joueur j){
+        if(j.getFortune()<=0) joueurs.remove(j);
+    }
+    
+    /**
+     * Cette méthode a pour rêle de définir la fin de partie
+     * la partie est terminée s'il reste un seule joueur dans la liste des joueurs 
+     * 
+     * @return vrai si la partie est terminée sion elle retourne faux
+     */
+    public boolean findePartie(){
+            return (1==joueurs.size());
+    }
+    
+    /**
+     * cette méthode définit le tour du jeu 
+     */
+    public void tourDuJeu(){
+        
+        while(!findePartie()){
+            for(Joueur j: joueurs){
+                //le joueur joue 
+                j.tourDeJeu();
+                //on l'elemine si la condition d'élimination est vérifiée 
+                elimination(j);
+            }
+        }
+    
+    }
     
     /**
      * Cette méthode a pour rêle de définir la fin de partie
