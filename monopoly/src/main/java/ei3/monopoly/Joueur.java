@@ -11,6 +11,23 @@ package ei3.monopoly;
 public class Joueur {
     private String nom; 
     private int fortune; 
-    // private Case pos; 
+    // private Case pos;
+    
+    
+    // Méthode de paiement d'une somme à un autre joueur
+    public void payer(Joueur autreJoueur, int montant) throws NoMoreMoney {
+        if (this.fortune < montant) {
+            throw new NoMoreMoney("Fonds insuffisants pour le paiement.");
+        }
+        this.fortune -= montant;
+        autreJoueur.fortune += montant;
+    }
+    
+    // Classe d'exception pour gérer le cas de fonds insuffisants
+    public static class NoMoreMoney extends Exception {
+        public NoMoreMoney(String message) {
+            super(message);
+        }
+    }
     
 }
