@@ -179,7 +179,11 @@ public class Joueur {
         // Avancer le joueur sur le plateau
         avancer(de);
         // 
-        if (pos instanceof Achetable) {
+        if (pos instanceof Speciale) {
+            // Appliquer l'effet de la case spéciale
+            ((Speciale) pos).appliquerEffet();
+            
+        } else if (pos instanceof Achetable) {
             Achetable caseAchetable = (Achetable) pos;
             if (de % 2 == 1 && caseAchetable.getProprietaire() == null && fortune >= caseAchetable.getPrix()) {
                 try {
