@@ -38,33 +38,9 @@ public class Joueur {
         this.pos=null;
         this.fortune = 100000; // Fortune initialisée par défaut à 100000 €
     }
-    private Case pos; 
-    private Plateau plateau;
-    
-    /**
-     * constructeur joueur
-     * @param nom : nom du joueur
-     * @param plateau
-     * @param pos : position du joueur
-     * @author nekouki
-     */
-    public Joueur(String nom, Plateau plateau, Case pos) {
-        this.nom = nom;
-        this.plateau = plateau;
-        this.pos = pos;
-        this.fortune = 100000; // Fortune initiale de 100000 €
-    }
-    /**
-     * constructeur par defaut
-     * @author nekouki
-     */
-    
-    public Joueur() {
-        this.nom='Bob';
-        this.pos=0;
-        this.fortune = 100000; // Fortune initialisée par défaut à 100000 €
-    }
 
+    
+   
     public String getNom() {
         return nom;
     }
@@ -85,13 +61,22 @@ public class Joueur {
         return this.plateau;
     }
     
+    public Case getPos(){
+        return this.pos; 
+    }
+    
+    public void setPos(Case pos) {
+        this.pos= pos;
+    }
+    
     /**
     /**
     * Afficher les infos du joueur
     * @author grigm
     */
-    public void toString(){
-        System.out.println("Nom du joueur : " + this.nom + "\nFortune : " + this.fortune); 
+    @Override
+    public String toString(){
+        return "Nom du joueur : " + this.nom + "\nFortune : " + this.fortune; 
     }
 
     
@@ -105,26 +90,15 @@ public class Joueur {
     public int nbGares(){
         int count = 0; 
         for (int i = 0; i<40; i++){
-            /*if (this.plateau.getplateau().get(i) instanceof Achetable){
-              if (this.plateau.getplateau().get(i).getProp().getNom()== this.getNom()) {
+            if (this.plateau.getPlateau().get(i) instanceof Achetable){
+                if (this.plateau.getPlateau().get(i).getProp().getNom()== this.getNom()) {
                     count ++; 
                 }  
             }
-          */  
+           
         }
         return count; 
-    public int nbGares(){
-        int count = 0; 
-        for (int i = 0; i<40; i++){
-            /*if (this.plateau.getplateau().get(i) instanceof Achetable){
-              if (this.plateau.getplateau().get(i).getProp().getNom()== this.getNom()) {
-                    count ++; 
-                }  
-            }
-          */  
-        }
-        return count; 
-    }
+    
     
     
     
