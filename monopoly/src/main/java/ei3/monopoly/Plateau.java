@@ -39,9 +39,11 @@ public class Plateau {
         Random generateurAleatoire = new Random();
         int nbAlea, randomise;
         
-        for (int i = 0; i < NB_CASES; i++){
+        Prison p = new Prison("Prison");
+        plateau.add(p);
+        
+        for (int i = 1; i < NB_CASES; i++){
             Case e;
-            
             nbAlea = generateurAleatoire.nextInt(3);
             
             switch (nbAlea){
@@ -59,19 +61,16 @@ public class Plateau {
                     break;
                 case 3: //cree des cases non achetables
                     
-                    randomise = generateurAleatoire.nextInt(3);
+                    randomise = generateurAleatoire.nextInt(2);
                     
                     switch(nbAlea){
                         case 0:
-                            e = new Prison("Prison");
-                            break;
-                        case 1:
                             e = new TaxeGain("TaxeGain");
                             break;
-                        case 2:
+                        case 1:
                             e = new Carte("Carte");
                             break;
-                        case 3:
+                        case 2:
                             e = new Policier("Policier");
                             break;
                     }
