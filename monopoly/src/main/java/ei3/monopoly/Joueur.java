@@ -91,8 +91,9 @@ public class Joueur {
     public int nbGares(){
         int count = 0; 
         for (int i = 0; i<40; i++){
-            if (this.plateau.getPlateau().get(i) instanceof Achetable){
-                if (this.plateau.getPlateau().get(i).getProp().getNom()== this.getNom()) {
+            Case caseTestee = this.plateau.getPlateau().get(i);
+            if (caseTestee instanceof Achetable){
+                if (((Achetable) caseTestee).getProp().getNom()== this.getNom()) {
                     count ++; 
                 }  
             }
@@ -113,7 +114,7 @@ public class Joueur {
         int count = 0; 
         for (int i = 0; i<40; i++){
             if (this.plateau.getPlateau().get(i) instanceof Companie){
-              if (this.plateau.getPlateau().get(i).getgetProp().getNom()== this.getNom()) {
+              if (((Achetable) this.plateau.getPlateau().get(i)).getProp().getNom()== this.getNom()) {
                     count ++; 
                 }  
             }

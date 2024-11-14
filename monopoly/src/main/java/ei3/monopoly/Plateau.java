@@ -1,4 +1,4 @@
-*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -29,7 +29,14 @@ public class Plateau {
         plateau = new ArrayList<>();
         joueurs = new LinkedList<>();
     }
+
+    public ArrayList<Case> getPlateau() {
+        return plateau;
+    }
     
+    public void ajouterJoueur(Joueur j){
+        joueurs.add(j);
+    }
     /**
     * Initialise le plateau de jeu
     */
@@ -40,7 +47,7 @@ public class Plateau {
         Random generateurAleatoire = new Random();
         int nbAlea, randomise;
         
-        Prison p = new Prison("Prison");
+        Prison p = new Prison("Prison",0);
         plateau.add(p);
         
         for (int i = 1; i < NB_CASES; i++){
@@ -49,15 +56,15 @@ public class Plateau {
             
             switch (nbAlea){
                 case 0:
-                    e = new Gare("Gare", 0);
+                    e = new Gare("Gare",0, i);
                     plateau.add(e);    
                     break;
                 case 1:
-                    e = new Companie("Companie",0);
+                    e = new Companie("Companie",0,i);
                     plateau.add(e);    
                     break;
                 case 2:
-                    e = new Constructible("Constructible",0, 0, 0);
+                    e = new Constructible("Constructible",0,0,0,0,0,i);
                     plateau.add(e);    
                     break;
                 case 3: //cree des cases non achetables
@@ -66,14 +73,16 @@ public class Plateau {
                     
                     switch(nbAlea){
                         case 0:
-                            e = new TaxeGain("TaxeGain");
+                            e = new TaxeGain("TaxeGain",i);
                             break;
                         case 1:
-                            e = new Carte("Carte");
+                            e = new Carte("Carte",i);
                             break;
                         case 2:
-                            e = new Policier("Policier");
+                            e = new Policier("Policier",i);
                             break;
+                        default:
+                            e = null;
                     }
                     plateau.add(e);    
                     break;
