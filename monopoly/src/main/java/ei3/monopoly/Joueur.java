@@ -31,7 +31,32 @@ public class Joueur {
         this.fortune = fortune;
     }
     
+      /**
+    * Afficher les infos du joueur
+    * @author grigm
+    */
+    public String toString(){
+        return ""; 
+    }
     
+    /**
+    * 
+    * @author grigm
+    */
+    public String nbGares(){
+        return ""; 
+    }
+    
+    /**
+    * 
+    * @author grigm
+    */
+    public String nbCompanies(){
+        return ""; 
+    }
+    
+    
+
     
  
   
