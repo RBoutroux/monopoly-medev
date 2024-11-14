@@ -65,8 +65,10 @@ public class Joueur {
         return this.pos; 
     }
     
-    public void setPos(Case pos) {
-        this.pos= pos;
+
+    
+    public void setPos(Case nouvelleposition) {
+        this.pos= nouvelleposition;
     }
     
     /**
@@ -85,7 +87,6 @@ public class Joueur {
     * 
     * @author grigm
      * @return count le nombre de compagnies que possèdent le joueur 
-     * @return count le nombre de compagnies que possèdent le joueur 
     */
     public int nbGares(){
         int count = 0; 
@@ -99,54 +100,41 @@ public class Joueur {
         }
         return count; 
     
-    
-    
-    
-    /**
-     *
-     * @author grigm
-     * @return count le nombre de compagnies que possèdent le joueur 
-     */    
-    public int nbCompanies(){
-        int count = 0; 
-        for (int i = 0; i<40; i++){
-            /*if (this.plateau.getplateau().get(i) instanceof Companies){
-              if (this.plateau.getplateau().get(i).getgetProp().getNom()== this.getNom()) {
-                    count ++; 
-                }  
-            }
-        */    
-        }
-        return count; 
     }
-
+    
+    
     /**
     * Modifier le propriétaire de la case a et payer le prix de la case
      *
      * @author grigm
      * @return count le nombre de compagnies que possèdent le joueur 
-     */    
+     */       
     public int nbCompanies(){
         int count = 0; 
         for (int i = 0; i<40; i++){
-            /*if (this.plateau.getplateau().get(i) instanceof Companies){
-              if (this.plateau.getplateau().get(i).getgetProp().getNom()== this.getNom()) {
+            if (this.plateau.getPlateau().get(i) instanceof Companie){
+              if (this.plateau.getPlateau().get(i).getgetProp().getNom()== this.getNom()) {
                     count ++; 
                 }  
             }
-        */    
+           
         }
         return count; 
     }
+
+     
+   
 
     /**
     * Modifier le propriétaire de la case a et payer le prix de la case
     * @author grigm
      * @param a élément achetable à acheter 
-     * @param a élément achetable à acheter 
     */
-    public void acheter(Achetable a){
-         a.acheter(this);
+    public void acheter(Achetable a)throws NoMoreMoney {
+         if (this.fortune < a.getPrix()) {
+            throw new NoMoreMoney("Fonds insuffisants pour le paiement.");
+        }
+        a.acheter(this);
          
          //on paie le prix de l'achat 
          this.fortune = this.fortune - a.getPrix(); 
@@ -189,25 +177,10 @@ public class Joueur {
         }   
     }
 
-    public void acheter(Achetable a){
-         a.acheter(this);
-         
-         //on paie le prix de l'achat 
-         this.fortune = this.fortune - a.getPrix(); 
-         
-    }
+   
     
     
-    /**
-    * Récupérer le prix de la case qu'on hypothèque
-    * @author grigm
-     * @param a case à hypotequer
-    */
-    public void hypotequer(Achetable a){
-        //on récupère le montant de la case 
-         this.fortune = this.fortune + a.getPrix(); 
-          
-    }
+  
   
     // Méthode de paiement d'une somme à un autre joueur
     public void payer(Joueur autreJoueur, int montant) throws NoMoreMoney {
@@ -246,24 +219,11 @@ public class Joueur {
         // calcul de la nouvelle position
         int nouvellePosition = (pos.getPosition() + d) % 40;
         // Mettre à jour la position de la case
-        pos.setPosition(nouvellePosition);
+        Case nouvelle = this.plateau.getPlateau().get(nouvellePosition);
+        this.setPos(nouvelle);
         
     }
-    /**
-     * Tour de Jeu
-     * @author nekouki
-     */
     
-    /**
-     * @param d: entier issu du dé
-     * @author: nekouki
-     */
-    
-    public void avancer(int d) {
-        // calcul de la nouvelle position
-        this.pos = (this.pos + d) % 40;
-        
-    }
     /**
      * Tour de Jeu
      * @author nekouki
@@ -277,19 +237,19 @@ public class Joueur {
         // 
         if (pos instanceof Speciale) {
             // Appliquer l'effet de la case spéciale
-            ((Speciale) pos).appliquerEffet();
+            ((Speciale) pos).appliquerEffet(this);
             
         } else if (pos instanceof Achetable) {
             Achetable caseAchetable = (Achetable) pos;
-            if (de % 2 == 1 && caseAchetable.getProprietaire() == null && fortune >= caseAchetable.getPrix()) {
+            if (de % 2 == 1 && caseAchetable.getProp() == null && fortune >= caseAchetable.getPrix()) {
                 try {
                     acheter(caseAchetable);
                 } catch (NoMoreMoney e) {
                     System.out.println(e.getMessage());
                 }
-            } else if (caseAchetable.getProprietaire() != null && caseAchetable.getProprietaire() != this) {
+            } else if (caseAchetable.getProp() != null && caseAchetable.getProp() != this) {
                 try {
-                    payer(caseAchetable.getProprietaire(), caseAchetable.calculerLoyer());
+                    payer(caseAchetable.getProp(), caseAchetable.calculerLoyer());
                 } catch (NoMoreMoney e) {
                     System.out.println(nom + " ne peut pas payer le loyer et est éliminé.");
                     plateau.elimination(this);
@@ -299,27 +259,6 @@ public class Joueur {
     
         }
     }   
-        // Avancer le joueur sur le plateau
-        avancer(de);
-        // 
-        if (pos instanceof Achetable) {
-            Achetable caseAchetable = (Achetable) pos;
-            if (de % 2 == 1 && caseAchetable.getProprietaire() == null && fortune >= caseAchetable.getPrix()) {
-                try {
-                    acheter(caseAchetable);
-                } catch (NoMoreMoney e) {
-                    System.out.println(e.getMessage());
-                }
-            } else if (caseAchetable.getProprietaire() != null && caseAchetable.getProprietaire() != this) {
-                try {
-                    payer(caseAchetable.getProprietaire(), caseAchetable.calculerLoyer());
-                } catch (NoMoreMoney e) {
-                    System.out.println(nom + " ne peut pas payer le loyer et est éliminé.");
-                    plateau.elimination(this);
-                }
-            }
         
-    
-        }
-    }   
+       
 }

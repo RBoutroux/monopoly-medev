@@ -10,12 +10,12 @@ package ei3.monopoly;
  */
 public class Prison extends Speciale {
     
-    public Prison(String nom) {
-        super(nom);
+    public Prison(String nom, int id) {
+        super(nom, id);
     }
     
     public Prison(){
-        super("prison");
+        super("prison", 0);
     }
 
     @Override

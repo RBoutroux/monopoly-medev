@@ -14,13 +14,13 @@ public class TaxeGain extends Speciale {
     
     private int gain; //positif si gain, négatif si taxe
 
-    public TaxeGain(int gain, String nom) {
-        super(nom);
+    public TaxeGain(int gain, String nom, int id) {
+        super(nom, id);
         this.gain = gain;
     }
     
-    public TaxeGain(String nom) {
-        super(nom);
+    public TaxeGain(String nom, int id) {
+        super(nom, id);
         Random rand = new Random();
         this.gain = rand.nextInt(20000 + 1)-10000;
     }

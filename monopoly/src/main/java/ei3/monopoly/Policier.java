@@ -10,11 +10,11 @@ package ei3.monopoly;
  */
 public class Policier extends Speciale {
     
-    public Policier(String nom) {
-        super(nom);
+    public Policier(String nom, int id) {
+        super(nom, id);
     }
     public Policier(){
-        super("policier");
+        super("policier", 0);
     }
     
     @Override

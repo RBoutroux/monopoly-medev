@@ -10,6 +10,8 @@ public abstract class Case {
     public int getPosition(){
         return this.p;
     }
+    
+   
 
     @Override
     public abstract String toString();

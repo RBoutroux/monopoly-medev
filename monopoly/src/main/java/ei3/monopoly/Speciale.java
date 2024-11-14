@@ -10,8 +10,8 @@ package ei3.monopoly;
  */
 public abstract class Speciale extends Case {
 
-    public Speciale(String nom) {
-        super(nom);
+    public Speciale(String nom, int id) {
+        super(nom, id);
     }
 
     @Override

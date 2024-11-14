@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class Carte extends Speciale {
     
-    public Carte(String nom) {
-        super(nom);
+    public Carte(String nom, int id) {
+        super(nom, id);
     }
     
     @Override
@@ -43,7 +43,7 @@ public class Carte extends Speciale {
         int indiceCase = rand.nextInt(40);
         Case caseArrivee =j.getPlateau().getPlateau().get(indiceCase);
         System.out.println("vous etes deplacé sur la case "+ caseArrivee.toString());
-        if (caseArrivee.getp()<j.getPos().getp()){//il faut verifier si passage par la case départ
+        if (caseArrivee.getPosition()<j.getPos().getPosition()){//il faut verifier si passage par la case départ
             System.out.println("vous passez par la case depart, vous gagnez 200000€");
             }
         j.setPos(caseArrivee);
