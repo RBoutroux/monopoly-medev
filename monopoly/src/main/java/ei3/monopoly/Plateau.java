@@ -151,17 +151,4 @@ public class Plateau {
         }
     
     }
-    
-    /**
-     * Cette méthode a pour rêle de définir la fin de partie
-     * la partie est terminée s'il reste un seule joueur dans la liste des joueurs 
-     * 
-     * @return vrai si la partie est terminée sion elle retourne faux
-     */
-    public boolean findePartie(){
-            return (1==joueurs.size());
-    }
-    /**
-     * 
-     */
 }
