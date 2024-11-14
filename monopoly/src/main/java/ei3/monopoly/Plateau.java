@@ -10,8 +10,8 @@ import java.util.Random;
 
 
 /**
- *
- * @author User
+ * Classe Plateau de Jeu
+ * @author Kaoutar et Larissa 
  */
 public class Plateau {
     ArrayList<Case> plateau; //stocker 40 cases
@@ -37,25 +37,44 @@ public class Plateau {
     public void initPlateau(){
         
         Random generateurAleatoire = new Random();
-
-        int nbAlea = generateurAleatoire.nextInt(3);
+        int nbAlea, randomise;
         
         for (int i = 0; i < NB_CASES; i++){
+            Case e;
+            
+            nbAlea = generateurAleatoire.nextInt(3);
+            
             switch (nbAlea){
                 case 0:
-                    Case e = new Gare("");
+                    e = new Gare("", 0);
                     plateau.add(e);    
                     break;
                 case 1:
-                    Case e  = new Companie("");
+                    e = new Companie("",0);
                     plateau.add(e);    
                     break;
                 case 2:
-                    Case e = new Constructible("");
+                    e = new Constructible("",0, 0, 0);
                     plateau.add(e);    
                     break;
-                case 3:
-                    Case e = new NonAchetable("");
+                case 3: //cree des cases non achetables
+                    
+                    randomise = generateurAleatoire.nextInt(3);
+                    
+                    switch(nbAlea){
+                        case 0:
+                            e = new Prison("Prison");
+                            break;
+                        case 1:
+                            e = new TaxeGain("TaxeGain");
+                            break;
+                        case 2:
+                            e = new Carte("Carte");
+                            break;
+                        case 3:
+                            e = new Policier("Policier");
+                            break;
+                    }
                     plateau.add(e);    
                     break;
             }  
@@ -86,7 +105,8 @@ public class Plateau {
         while(it.hasNext()){
             Case e = it.next();
             if (e instanceof Gare){
-                if( j == Gare.getProprietaire() ){
+                Achetable a = (Achetable)e;
+                if( a.getProp() == j ){
                     nbGare++;
                 }
             }
@@ -99,7 +119,7 @@ public class Plateau {
      * Avance d cases 
      * @param c Case actuelle
      * @param i Nombre de cases à avancer
-     * @return La case située d cases plus loin
+     * @return La case située i cases plus loin
     */
     public Case avance(Case c, int i){
         int indexActuel = plateau.indexOf(c);
@@ -118,6 +138,7 @@ public class Plateau {
             return null;
         }
     }
+    
     /**
      * éliminer le joueur si sa fortune <=0
      * @param j: le joueur en compte
