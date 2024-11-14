@@ -55,9 +55,30 @@ public class Joueur {
         return ""; 
     }
     
+    /**
+    * 
+    * @author grigm
     
-
+    public void acheter(Achetable a){
+         
+    }
+    * */
     
+    /**
+    * 
+    * @author grigm
+    public void hypotequer(Achetable a){
+         
+    }
+    */
+    
+    /**
+    * 
+    * @author grigm
+    */
+    public void avancer(){
+         
+    }
  
   
     // Méthode de paiement d'une somme à un autre joueur
