@@ -1,8 +1,8 @@
 package ei3.monopoly;
 
 public class Companie extends Achetable {
-    public Companie(String nom, int prix){
-        super(nom,prix);
+    public Companie(String nom, int prix, int pos){
+        super(nom,prix,pos);
     }
     public int calculerLoyer(){
         if (this.getProp()==null){

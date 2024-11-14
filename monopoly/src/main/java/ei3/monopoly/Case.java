@@ -2,10 +2,13 @@ package ei3.monopoly;
 
 public abstract class Case {
     protected String nom;
-    //final int p; // Index of the square Commented following the class diagram
-    public Case(String nom) {
+    final int p; 
+    public Case(String nom,int p) {
         this.nom = nom;
-        //this.p = p;
+        this.p = p;
+    }
+    public int getPosition(){
+        return this.p;
     }
 
     @Override
